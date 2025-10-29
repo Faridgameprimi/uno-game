@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO GAME - NO MERCY</title>
+    <style>
+        /* Gaya dasar UI Uno yang cerah */
+        body { font-family: sans-serif; background-color: #333; color: white; text-align: center; }
+        .container { max-width: 600px; margin: 50px auto; padding: 20px; background-color: #444; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        h1 { color: #E74C3C; text-transform: uppercase; }
+        .uno-button { background-color: #E74C3C; color: white; border: none; padding: 10px 20px; margin: 5px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .uno-button:hover { background-color: #C0392B; }
+        input[type="text"] { padding: 10px; margin: 10px 0; border: 2px solid #E74C3C; border-radius: 5px; width: 80%; }
+
+        /* Gaya Khusus Uno No Mercy */
+        .mercy-info { margin-top: 20px; padding: 10px; background-color: #2C3E50; border-radius: 8px; }
+        .login-box { padding: 20px; border: 1px solid #777; border-radius: 10px; margin-bottom: 20px; }
+        .game-screen { border: 2px solid #3498DB; padding: 20px; border-radius: 10px; margin-top: 20px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🔴 UNO NO MERCY 🟢</h1>
+    
+    <div class="login-box" id="loginScreen">
+        <h3>Masuk (ID Pemain)</h3>
+        <input type="text" id="playerIdInput" placeholder="Masukkan ID Pemain Anda" maxlength="15">
+        <button class="uno-button" onclick="login()">Masuk ke Game</button>
+        <p id="playerDisplay"></p>
+    </div>
+
+    <div id="lobbyScreen" style="display: none;">
+        <h3>Lobby Multiplayer</h3>
+        
+        <div class="mercy-info">
+            <h4>Fitur Khusus (Placeholder)</h4>
+            <p>Anda dapat terkena **Eliminasi** jika memiliki 25+ kartu!</p>
+            <p id="mercyCount">Jumlah Kartu No Mercy Anda: 0</p>
+        </div>
+
+        <button class="uno-button" onclick="createRoom()">Buat Room Publik</button>
+        <p>Atau</p>
+        <input type="text" id="roomCodeInput" placeholder="Masukkan Kode Room">
+        <button class="uno-button" onclick="joinRoomByCode()">Gabung Room</button>
+        
+        <hr>
+        
+        <h4>Room Publik Tersedia (Placeholder)</h4>
+        <ul id="publicRooms" style="list-style: none; padding: 0;">
+            <li>[Room A] - 2/4 Pemain <button class="uno-button" onclick="joinRoom('A')">Gabung</button></li>
+        </ul>
+        
+    </div>
+    
+    <div class="game-screen" id="gameScreen">
+        <h3>Layar Permainan (Room ID: <span id="currentRoomId">N/A</span>)</h3>
+        <p>Anda telah bergabung sebagai: <span id="gamePlayerId"></span></p>
+        <p>... Gameplay Uno No Mercy (Koneksi WebSocket diperlukan) ...</p>
+        <button class="uno-button" onclick="leaveRoom()">Keluar Room</button>
+    </div>
+    
+</div>
+
+<script>
+    let currentUserId = '';
+
+    function login() {
+        const idInput = document.getElementById('playerIdInput').value.trim();
+        if (idInput) {
+            currentUserId = idInput;
+            document.getElementById('playerDisplay').innerText = 'Selamat datang, ' + currentUserId + '!';
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('lobbyScreen').style.display = 'block';
+            // Placeholder: Di sini harusnya ada koneksi ke server WebSocket
+        } else {
+            alert('ID Pemain tidak boleh kosong!');
+        }
+    }
+
+    function createRoom() {
+        // Placeholder: Di sini harusnya kirim permintaan ke server untuk buat room dan dapatkan kode.
+        const newRoomId = Math.random().toString(36).substring(2, 8).toUpperCase();
+        goToGameScreen(newRoomId, currentUserId);
+    }
+
+    function joinRoomByCode() {
+        const code = document.getElementById('roomCodeInput').value.trim().toUpperCase();
+        if (code) {
+            // Placeholder: Di sini harusnya kirim permintaan ke server untuk gabung room
+            goToGameScreen(code, currentUserId);
+        } else {
+            alert('Masukkan kode room!');
+        }
+    }
+
+    function joinRoom(roomId) {
+        // Placeholder: Di sini harusnya kirim permintaan ke server untuk gabung room publik
+        goToGameScreen(roomId, currentUserId);
+    }
+
+    function goToGameScreen(roomId, playerId) {
+        document.getElementById('lobbyScreen').style.display = 'none';
+        document.getElementById('gameScreen').style.display = 'block';
+        document.getElementById('currentRoomId').innerText = roomId;
+        document.getElementById('gamePlayerId').innerText = playerId;
+    }
+
+    function leaveRoom() {
+        // Placeholder: Di sini harusnya kirim permintaan ke server untuk keluar room
+        document.getElementById('gameScreen').style.display = 'none';
+        document.getElementById('lobbyScreen').style.display = 'block';
+    }
+
+    // Fungsi placeholder untuk menampilkan jumlah kartu No Mercy (hanya visual)
+    function updateMercyCount(count) {
+        document.getElementById('mercyCount').innerText = 'Jumlah Kartu No Mercy Anda: ' + count;
+    }
+    // updateMercyCount(5); // Contoh penggunaan
+</script>
+
+</body>
+</html>
