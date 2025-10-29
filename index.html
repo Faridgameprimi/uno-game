@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Uno Game — Modern</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">Uno Game — Modern</div>
+      <div class="controls">
+        <select id="modeSelect">
+          <option value="classic">Uno Klasik</option>
+          <option value="nomercy">Uno No Mercy</option>
+          <option value="flip">Uno Flip</option>
+        </select>
+        <input id="playerName" placeholder="Nama kamu"/>
+        <button id="newGameBtn">Mula Game</button>
+        <button id="createRoomBtn">Buat Room</button>
+        <input id="joinCode" placeholder="Masukkan room code"/>
+        <button id="joinRoomBtn">Join</button>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <aside class="left panel">
+        <h3>Room & Players</h3>
+        <div class="meta">Room code: <span id="roomCode">-</span></div>
+        <div class="meta">Status: <span id="status">idle</span></div>
+        <div id="players" class="players-list"></div>
+        <div class="settings">
+          <label>Max Players
+            <select id="maxPlayers"><option>2</option><option selected>3</option><option>4</option></select>
+          </label>
+        </div>
+      </aside>
+
+      <section class="center panel">
+        <div class="board-top">
+          <div class="meta">Deck: <span id="deckCount">0</span></div>
+          <div class="meta">Giliran: <strong id="currentPlayer">-</strong></div>
+        </div>
+
+        <div class="table">
+          <div class="discard">
+            <div class="label">Discard</div>
+            <div id="discardTop" class="card-big">-</div>
+          </div>
+          <div class="deck">
+            <div class="label">Deck</div>
+            <div id="deckCard" class="card-big back">UNO</div>
+            <div class="deck-actions">
+              <button id="drawBtn">Draw</button>
+              <button id="passBtn">Pass</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hand-area">
+          <div class="meta">Hand Anda</div>
+          <div id="hand" class="hand"></div>
+          <div class="hand-actions">
+            <button id="unoBtn">UNO!</button>
+            <button id="autoPlay">Auto-play Bots</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="right panel">
+        <h3>Chat & Score</h3>
+        <div id="log" class="log"></div>
+        <div class="chat-row">
+          <input id="chatIn" placeholder="Taip mesej..." />
+          <button id="sendChat">Hantar</button>
+        </div>
+
+        <h4>Scoreboard</h4>
+        <div id="scoreboard" class="meta">Belum ada permainan</div>
+      </aside>
+    </main>
+
+    <footer class="foot">Single-file split: index.html + style.css + app.js — Siap untuk GitHub Pages</footer>
+  </div>
+
+  <!-- PeerJS CDN -->
+  <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

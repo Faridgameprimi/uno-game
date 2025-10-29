@@ -1,0 +1,31 @@
+:root{--bg:#0b1220;--panel:#0e1a2a;--muted:#9fb1d6;--accent:#4fc3f7;--card:#ffffff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Roboto,Arial;background:linear-gradient(180deg,#061229,#071129);color:#e6eef8;display:flex;justify-content:center;padding:18px}
+.app{width:100%;max-width:1200px}
+.topbar{display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:700}
+.controls{display:flex;gap:8px;align-items:center}
+.controls input, .controls select, .controls button{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
+.main-grid{display:grid;grid-template-columns:280px 1fr 320px;gap:12px;margin-top:14px}
+.panel{background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;min-height:320px}
+.meta{font-size:13px;color:var(--muted)}
+.players-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.player-row{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02)}
+.avatar{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#fff,#eee);color:#111;display:flex;align-items:center;justify-content:center;font-weight:700}
+.center .table{display:flex;justify-content:center;gap:40px;margin-top:12px}
+.card-big{width:120px;height:170px;border-radius:12px;background:var(--card);color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+.card-big.back{background:linear-gradient(180deg,#11324a,#071b2a);color:#fff}
+.hand{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.card{width:72px;height:108px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;color:#111;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.6)}
+.hand-actions{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.log{height:180px;overflow:auto;padding:8px;background:rgba(255,255,255,0.02);border-radius:8px}
+.chat-row{display:flex;gap:8px;margin-top:8px}
+.chat-row input{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent}
+.foot{margin-top:12px;text-align:center;color:var(--muted);font-size:13px}
+
+/* responsive */
+@media(max-width:980px){
+  .main-grid{grid-template-columns:1fr}
+  .card-big{width:90px;height:130px}
+  .card{width:56px;height:86px}
+}
